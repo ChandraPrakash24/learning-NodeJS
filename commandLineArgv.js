@@ -19,6 +19,5 @@ const arg2 = commandLineArguments[3];
 
 // on CLI : $ node commmandLineArgv.js 1 2
 
-
 console.log(parseInt(arg1) + parseInt(arg2));  // 3
 console.log(arg1 + arg2); // 12
