@@ -1,0 +1,21 @@
+ Volume in drive D is DATA
+ Volume Serial Number is AC57-BC1E
+
+ Directory of D:\BACKEND\NODEJS\learning-nodejs-coderdost
+
+10-12-2023  20:02    <DIR>          .
+10-12-2023  20:02    <DIR>          ..
+10-12-2023  20:02                20 .gitignore
+10-12-2023  12:47               630 commandLineArgv.js
+10-12-2023  19:23             1,462 demo.txt
+10-12-2023  11:21               307 exportModule.js
+10-12-2023  20:08               281 files.js
+10-12-2023  11:20               247 importModule.js
+11-12-2023  11:40               628 index.js
+10-12-2023  19:47    <DIR>          node_modules
+10-12-2023  19:47               289 package.json
+10-12-2023  19:47            14,916 pnpm-lock.yaml
+09-12-2023  12:42                18 README.md
+10-12-2023  17:11             1,701 temp.js
+              11 File(s)         20,499 bytes
+               3 Dir(s)  449,669,533,696 bytes free
