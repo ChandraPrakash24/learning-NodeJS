@@ -78,3 +78,65 @@ app.get('/demo', (req, res) => {
 
 // END
 app.listen(3000, () => { console.log('server started'); });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ASSIGNMENT 1
+
+
+// const express = require('express');
+// const app = express();
+// const port = 3000;
+
+// app.get('/demo', (req, res) => {
+    //     // Log all data in the request object
+    //     console.log(req.query);
+    
+    //     // Send back the same data in the response object
+    //     res.json(req.query);
+    // });
+    
+    // app.listen(port, () => {
+        //     console.log(`Server is running on http://localhost:${port}`);
+        // });
+        
+        
+        
+        // ASSIGNMENT 2
+        
+        // app.get('/demo/:name/:subject', (req, res) => {
+            //     // Log all parameters in the request object
+            //     console.log(req.params);
+            
+            //     // Send back the same parameters in the response object
+            //     res.json(req.params);
+            // });
+            
+            
+            
+// ASSIGNMENT 3
+
+
+// Middleware to parse JSON data in the request body
+// app.use(express.json());
+
+// app.post('/demo', (req, res) => {
+//     // Log all data in the request body
+//     console.log(req.body);
+
+//     // Send back the same data in the response object
+//     res.json(req.body);
+// });
