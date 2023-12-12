@@ -1,13 +1,16 @@
 const express = require('express');
+const morgan = require('morgan');
 // const fs = require('fs');
 
 const app = express();
+
+app.use(morgan('tiny'));
 
 // const product = JSON.parse(fs.readFileSync('./dummyPost.json', 'utf-8'));
 
 app.use(express.json());
 // app.use(express.urlencoded()); //for formdata
-app.use(express.static('public'));
+// app.use(express.static('public')); // for static hosting 
 
 // middleware
 // global middleware
@@ -16,6 +19,7 @@ app.use('/', (req, res, next) => {
     next();
 })
 
+morgan('default');
 // cusome middleware
 
 // extract data from body or aka BodyParser
@@ -45,6 +49,7 @@ const auth = (req, res, next) => {
 
 
 // API - Route - Endpoint
+// app.get('/product/:id',auth, (req, res) => { //params
 app.get('/',auth, (req, res) => {
     res.json({ type: 'GET' });
 })
