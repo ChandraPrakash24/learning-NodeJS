@@ -5,9 +5,12 @@ const app = express();
 
 // const product = JSON.parse(fs.readFileSync('./dummyPost.json', 'utf-8'));
 
+app.use(express.json());
+// app.use(express.urlencoded()); //for formdata
+app.use(express.static('public'));
 
 // middleware
-// globa middleware
+// global middleware
 app.use('/', (req, res, next) => {
     console.log(req.ip, req.hostname, new Date(), req.get('User-Agent'));
     next();
@@ -15,14 +18,25 @@ app.use('/', (req, res, next) => {
 
 // cusome middleware
 
+// extract data from body or aka BodyParser
 const auth = (req, res, next) => {
     console.log(req.query);
-    if (req.query.password == 123) {
+    if (req.body.password == 123) {
         next()
     } else {
         res.sendStatus(401);
     }
 }
+
+// extract data from query in url
+// const auth = (req, res, next) => {
+//     console.log(req.query);
+//     if (req.query.password == 123) {
+//         next()
+//     } else {
+//         res.sendStatus(401);
+//     }
+// }
 
 // app.use(auth); //for gloal use
 
