@@ -23,7 +23,7 @@ exports.postProducts = async  (req, res) => {
     }
 
 }
-// READ
+// READ ALL
 exports. getProduct = async (req, res) => {
     try {
         const product = await Product.find();
@@ -33,6 +33,7 @@ exports. getProduct = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+// READ SPECIFIC
 exports. getSpecificProduct = async (req, res) => {
     try{
         const specificId = req.params.id;
@@ -48,26 +49,73 @@ exports. getSpecificProduct = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
-// UPDATE
-exports. putSpecificProduct = (req, res) => {
-    const specificId = +req.params.id;
-    const specificProductIndex = product.findIndex(p=>p.id===specificId);
-    product.splice(specificProductIndex, 1, {...req.body, id:specificId});
-    res.status(202).json({title:'Upadeted'});
-}
-exports. patchSpecificProduct = (req, res) => {
-    const specificId = +req.params.id;
-    const specificProductIndex = product.findIndex(p => p.id === specificId);
-        const productToPatch = product[specificProductIndex];
-        const updatedProduct = { ...productToPatch, ...req.body };
-        product.splice(specificProductIndex, 1, updatedProduct);
-        res.status(202).json({ title: 'Patched' });
+
+// exports.getSpecificProduct = async (req, res) => {
+//     try {
+//         // console.log('Inside getSpecificProduct'); // Add this line for debugging
+//         const specificId = req.params.id;
+//         // console.log(specificId);
+//         const specificProduct = await Product.findById(specificId);
+
+//         if (!specificProduct) {
+//             return res.status(404).json({ error: 'Product not found' });
+//         }
+
+//         res.json(specificProduct);
+//     } catch (err) {
+//         console.error('Error finding product:', err);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// };
+
+// UPDATE (REPLACE)
+// exports. putSpecificProduct = async (req, res) => {
+//     const specificId = +req.params.id;
+//     const doc = await Product.findOneAndReplace({_id:id}, req.body, {new:true});
+//     res.status(202).json(doc);
+// }
+
+exports.putSpecificProduct = async (req, res) => {
+    try {
+        const specificId = req.params.id;
+        const doc = await Product.findOneAndReplace({ _id: specificId }, req.body, {new:true});
+
+        if (!doc) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        res.status(202).json(doc);
+    } catch (error) {
+        console.error('Error updating product:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+// UPDATE (PATCH)
+exports. patchSpecificProduct = async (req, res) => {
+    try {
+        const specificId = req.params.id;
+        const doc = await Product.findOneAndUpdate({ _id: specificId }, req.body, {new:true});
+
+        if (!doc) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        res.status(202).json(doc);
+    } catch (error) {
+        console.error('Error updating Specidic product product:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 // DELETE
-exports. deleteSpecificProduct =  (req, res) => {
-    const specificId = +req.params.id;
-    const specificProductIndex = product.findIndex(p=>p.id===specificId);
-    const productToPatch = product[specificProductIndex];
-    product.splice(specificProductIndex, 1,);
-    res.status(202).json(productToPatch);
+exports. deleteSpecificProduct = async (req, res) => {
+    try {
+        const specificId = req.params.id;
+        const doc = await Product.findOneAndDelete({ _id: specificId }, req.body);
+        res.status(202).json(doc);
+    } catch (error) {
+        console.error('Error updating Specidic product product:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
