@@ -7,8 +7,7 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     description: {
-        type: String,
-        required: true
+        type: String
     },
     price: {
         type: Number,
@@ -22,7 +21,8 @@ const productSchema = new mongoose.Schema({
     rating: {
         type: Number,
         min: [0, 'wrong min'],
-        max: [5, 'wrong max']
+        max: [5, 'wrong max'],
+        default:0
     },
     brand: {
         type: String,

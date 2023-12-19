@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const app = express();
 const productRouter = require('./routes/productRouts.js');
 const userRouter = require('./routes/user.js');
+const path = require('path');
+
+app.use(express.static('build'));
 
 // mongo
 main().catch(err => console.log(err));
@@ -15,5 +18,8 @@ async function main() {
 app.use(express.json());  //body-parser
 app.use('/products',productRouter.routes);
 app.use('/users',userRouter.routes);
+app.use('*', (req,res)=>{
+  res.sendFile(path.resolve(__dirname,'build','index.html'));
+})
 
-app.listen(3000, () => { console.log('server started'); });
+app.listen(8080, () => { console.log('server started'); });
